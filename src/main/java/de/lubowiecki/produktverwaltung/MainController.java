@@ -1,16 +1,21 @@
 package de.lubowiecki.produktverwaltung;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class MainController {
+// Initializable deklariert eine Methode, die beim Starten des Controller automatisch ausgeführt wird
+public class MainController implements Initializable {
 
     private List<Product> products = new ArrayList<>();
 
@@ -42,6 +47,11 @@ public class MainController {
         }
     }
 
+    @FXML
+    public void changeView() throws IOException {
+        ProductsApplication.setRoot("sub-view");
+    }
+
     private Optional<Product> createProduct() {
         try {
             String name = this.name.getText();
@@ -60,8 +70,12 @@ public class MainController {
     @FXML
     private void handleKey(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER) {
+            //name.getStyleClass().add("rot");
             save();
         }
+        /*else if (event.getCode() == KeyCode.SHIFT) {
+            name.getStyleClass().remove("rot");
+        }*/
     }
 
     private void showProducts() {
@@ -79,5 +93,11 @@ public class MainController {
         name.clear();
         amount.clear();
         price.clear();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Aufgaben ausführen
+        System.out.println("Init");
     }
 }

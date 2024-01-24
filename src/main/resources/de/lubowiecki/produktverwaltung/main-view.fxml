@@ -5,19 +5,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#handleKey" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.lubowiecki.produktverwaltung.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#handleKey" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.lubowiecki.produktverwaltung.MainController">
    <children>
-      <Label layoutX="49.0" layoutY="57.0" text="Name:" />
+      <Label layoutX="49.0" layoutY="57.0" text="%form.name" />
       <TextField fx:id="name" layoutX="49.0" layoutY="84.0" />
 
-      <Label layoutX="49.0" layoutY="123.0" text="Anzahl:" />
+      <Label layoutX="49.0" layoutY="123.0" text="%form.amount" />
       <TextField fx:id="amount" layoutX="49.0" layoutY="150.0" />
 
-      <Label layoutX="49.0" layoutY="193.0" text="Preis:" />
+      <Label layoutX="49.0" layoutY="193.0" text="%form.price" />
       <TextField fx:id="price" layoutX="49.0" layoutY="220.0" />
 
-      <Button layoutX="49.0" layoutY="316.0" mnemonicParsing="false" onAction="#save" text="Speichern" />
+      <Button layoutX="49.0" layoutY="316.0" mnemonicParsing="false" onAction="#save" text="%btn.save" />
 
       <Label fx:id="output" layoutX="336.0" layoutY="88.0" />
+      <Button layoutX="546.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeView" text="Sub" />
    </children>
 </AnchorPane>
