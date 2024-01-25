@@ -1,9 +1,14 @@
 package de.lubowiecki.produktverwaltung;
 
+import javafx.beans.value.ObservableDoubleValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -29,7 +34,16 @@ public class MainController implements Initializable {
     private TextField price;
 
     @FXML
-    private Label output;
+    private TableView<Product> productTbl;
+
+    @FXML
+    private TableColumn<Product, String> c1;
+
+    @FXML
+    private TableColumn<Product, Integer> c2;
+
+    @FXML
+    private TableColumn<Product, Double> c3;
 
     @FXML
     private void save() {
@@ -43,8 +57,13 @@ public class MainController implements Initializable {
         if(opt.isPresent()) {
             products.add(opt.get());
             clearFields();
-            showProducts();
+            //showProducts();
+            showProductsInTble();
         }
+    }
+
+    private void showProductsInTble() {
+        productTbl.setItems(FXCollections.observableList(products)); // Sendet die Daten der Liste in die TableView
     }
 
     @FXML
@@ -78,6 +97,8 @@ public class MainController implements Initializable {
         }*/
     }
 
+    /*
+    // Anzeige der Produlkte im Label
     private void showProducts() {
         StringBuilder sb = new StringBuilder();
         for (Product p : products) {
@@ -87,6 +108,7 @@ public class MainController implements Initializable {
         }
         output.setText(sb.toString());
     }
+    */
 
     // Leert die Formularfelder
     private void clearFields() {
@@ -97,6 +119,10 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        c1.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        c2.setCellValueFactory(new PropertyValueFactory<Product, Integer>("amount"));
+        c3.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
         // Aufgaben ausführen
         System.out.println("Init");
     }
